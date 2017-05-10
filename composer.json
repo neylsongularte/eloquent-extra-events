@@ -1,0 +1,12 @@
+{
+    "name": "neylsongularte/eloquent-extra-events",
+    "description": "Eventos adicionais para o eloquent",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "NeylsonGularte\\EloquentExtraEvents\\": "src"
+        }
+    }
+}
