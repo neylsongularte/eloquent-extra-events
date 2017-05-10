@@ -2,18 +2,24 @@
 
 namespace NeylsonGularte\EloquentExtraEvents;
 
-
+// use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait ExtraEventsTrait {
 
 
 
-    public function extraEventsSync($relation, $ids, $detaching = true)
+
+    // public function extraEventsWrapper($object)
+    // {
+    //     if($object instanceof BelongsToMany) {
+    //         return new BelongsToManyWrapper(static::$dispatcher, $object);
+    //     }
+    //
+    //     throw new Exception("Objeto não suportado!", 1);
+    // }
+
+    public function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
     {
-
-        $changes = $this->$relation()->sync($ids, $detaching);
-
-        return $changes;
+        return (BelongsToManyWrapper) $this->belongsToMany($related, $table, $foreignKey, $otherKey, $relation);
     }
-
 }
