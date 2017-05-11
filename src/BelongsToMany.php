@@ -52,7 +52,7 @@ class BelongsToMany extends BelongsToManyEloquent {
 
         $results = parent::detach($ids, $touch);
 
-        $eventData = array_merge($baseEventData, ['results' => $results]);
+        $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($ids), 'results' => $results]);
         event('eloquent.detached: ' . $baseEventData['parent_model'], [$eventData]);
 
         return $results;
