@@ -3,7 +3,6 @@
 namespace NeylsonGularte\EloquentExtraEvents;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany as BelongsToManyEloquent;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
