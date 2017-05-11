@@ -2,9 +2,10 @@
 
 namespace NeylsonGularte\EloquentExtraEvents;
 
-// use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 use App;
 
+// Trait for models
 trait ExtraEventsTrait {
 
 
