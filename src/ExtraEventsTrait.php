@@ -3,8 +3,6 @@
 namespace NeylsonGularte\EloquentExtraEvents;
 
 
-use App;
-
 // Trait for models
 trait ExtraEventsTrait {
 
