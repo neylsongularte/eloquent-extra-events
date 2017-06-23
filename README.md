@@ -9,28 +9,24 @@ In your model:
 
 `use NeylsonGularte\EloquentExtraEvents\ExtraEventsTrait;`
 
-
-Listen events:
+Events:
+  * eloquent.syncing
+  * eloquent.synced
+  * eloquent.attaching
+  * eloquent.attached
+  * eloquent.detaching
+  * eloquent.detached
+  
+Listen events in App\Providers\AppServiceProvider:
 
 ```
+In 5.2.x and 5.3.x:
 $this->app['events']->listen('eloquent.syncing*', function ($eventData) {        
 });
 
-$this->app['events']->listen('eloquent.synced*', function ($eventData) {        
+In 5.4.x:
+$this->app['events']->listen('eloquent.syncing*', function ($eventName, $eventData) {        
 });
-
-$this->app['events']->listen('eloquent.attaching*', function ($eventData) {        
-});
-
-$this->app['events']->listen('eloquent.attached*', function ($eventData) {        
-});
-
-$this->app['events']->listen('eloquent.detaching*', function ($eventData) {        
-});
-
-$this->app['events']->listen('eloquent.detached*', function ($eventData) {        
-});
-
 
 ```
 
