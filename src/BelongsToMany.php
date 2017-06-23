@@ -17,12 +17,12 @@ class BelongsToMany extends BelongsToManyEloquent {
         $baseEventData = $this->getBaseEventData();
 
         $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($ids)]);
-        event('eloquent.syncing: ' . $baseEventData['parent_model'], [$eventData]);
+        event('eloquent.syncing: ' . $baseEventData['parent_model'], str_contains(app()->VERSION(), ['5.2.', '5.3.']) ? [$eventData] : $eventData);
 
         $changes = parent::sync($ids, $detaching);
 
         $eventData = array_merge($baseEventData, ['changes' => $changes]);
-        event('eloquent.synced: ' . $baseEventData['parent_model'], [$eventData]);
+        event('eloquent.synced: ' . $baseEventData['parent_model'], str_contains(app()->VERSION(), ['5.2.', '5.3.']) ? [$eventData] : $eventData);
 
         return $changes;
     }
@@ -33,13 +33,11 @@ class BelongsToMany extends BelongsToManyEloquent {
 
         $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($id)]);
 
-        // dd($eventData);
-
-        event('eloquent.attaching: ' . $baseEventData['parent_model'], [$eventData]);
+        event('eloquent.attaching: ' . $baseEventData['parent_model'], str_contains(app()->VERSION(), ['5.2.', '5.3.']) ? [$eventData] : $eventData);
 
         parent::attach($id, $attributes, $touch);
 
-        event('eloquent.attached: ' . $baseEventData['parent_model'], [$eventData]);
+        event('eloquent.attached: ' . $baseEventData['parent_model'], str_contains(app()->VERSION(), ['5.2.', '5.3.']) ? [$eventData] : $eventData);
     }
 
 
@@ -48,12 +46,12 @@ class BelongsToMany extends BelongsToManyEloquent {
         $baseEventData = $this->getBaseEventData();
 
         $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($ids)]);
-        event('eloquent.detaching: ' . $baseEventData['parent_model'], [$eventData]);
+        event('eloquent.detaching: ' . $baseEventData['parent_model'], str_contains(app()->VERSION(), ['5.2.', '5.3.']) ? [$eventData] : $eventData);
 
         $results = parent::detach($ids, $touch);
 
         $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($ids), 'results' => $results]);
-        event('eloquent.detached: ' . $baseEventData['parent_model'], [$eventData]);
+        event('eloquent.detached: ' . $baseEventData['parent_model'], str_contains(app()->VERSION(), ['5.2.', '5.3.']) ? [$eventData] : $eventData);
 
         return $results;
     }
