@@ -21,11 +21,11 @@ Listen events in `App\Providers\AppServiceProvider`:
 
 ```
 In 5.2.x and 5.3.x:
-$this->app['events']->listen('eloquent.syncing*', function ($eventData) {        
+Event::listen('eloquent.syncing*', function (array $eventData) {
 });
 
 In 5.4.x:
-$this->app['events']->listen('eloquent.syncing*', function ($eventName, $eventData) {        
+Event::listen('eloquent.syncing*', function ($eventName, array $eventData) {
 });
 
 ```
