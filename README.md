@@ -16,8 +16,8 @@ Events:
   * eloquent.attached
   * eloquent.detaching
   * eloquent.detached
-  
-Listen events in App\Providers\AppServiceProvider:
+
+Listen events in `App\Providers\AppServiceProvider`:
 
 ```
 In 5.2.x and 5.3.x:
@@ -29,6 +29,3 @@ $this->app['events']->listen('eloquent.syncing*', function ($eventName, $eventDa
 });
 
 ```
-
-
-
