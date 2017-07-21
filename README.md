@@ -1,5 +1,12 @@
 # eloquent-extra-events
 
+[![Total Downloads](https://poser.pugx.org/neylsongularte/eloquent-extra-events/downloads)](https://packagist.org/packages/neylsongularte/eloquent-extra-events)
+[![Monthly Downloads](https://poser.pugx.org/neylsongularte/eloquent-extra-events/d/monthly)](https://packagist.org/packages/neylsongularte/eloquent-extra-events)
+[![Daily Downloads](https://poser.pugx.org/neylsongularte/eloquent-extra-events/d/daily)](https://packagist.org/packages/neylsongularte/eloquent-extra-events)
+[![Latest Stable Version](https://poser.pugx.org/neylsongularte/eloquent-extra-events/v/stable)](https://packagist.org/packages/neylsongularte/eloquent-extra-events)
+[![Latest Unstable Version](https://poser.pugx.org/neylsongularte/eloquent-extra-events/v/unstable)](https://packagist.org/packages/neylsongularte/eloquent-extra-events)
+[![License](https://poser.pugx.org/neylsongularte/eloquent-extra-events/license)](https://packagist.org/packages/neylsongularte/eloquent-extra-events)
+
 Install:
 
 `composer require neylsongularte/eloquent-extra-events`
