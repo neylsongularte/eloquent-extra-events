@@ -9,6 +9,10 @@
 
 Install:
 
+For 5.2.x, 5.3.x and 5.4.x:
+`composer require neylsongularte/eloquent-extra-events:0.3.5`
+
+For 5.5.x:
 `composer require neylsongularte/eloquent-extra-events`
 
 
@@ -31,7 +35,7 @@ In 5.2.x and 5.3.x:
 Event::listen('eloquent.syncing*', function (array $eventData) {
 });
 
-In 5.4.x:
+In 5.4.x and 5.5.x:
 Event::listen('eloquent.syncing*', function ($eventName, array $eventData) {
 });
 
