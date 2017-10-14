@@ -46,7 +46,9 @@ Available properties:
 - `$eventData['parent_model']`: `string` e.g. `'App\Models\Model'`
 - `$eventData['parent_id']`: `integer` e.g. `42`
 - `$eventData['related_model']`: `string` e.g. `'App\Models\Model'`
-- `$eventData['changes']`: `array` with the following keys:
+- `$eventData['related_ids']`: `array` e.g. `[31,41]`
+- (Only eloquent.detached) `$eventData['results']`: `integer` e.g. `2`
+- (Only eloquent.synced) `$eventData['changes']`: `array` with the following keys:
   - `'attached'`: `array` e.g. `[1, 8]`
   - `'detached'`: `array` e.g. `[15, 16]`
   - `'updated'`: `array` e.g. `[23]`
