@@ -9,14 +9,15 @@
 
 Install:
 
+```
 For 5.2.x, 5.3.x and 5.4.x:
+composer require neylsongularte/eloquent-extra-events:0.3.5
+```
 
-`composer require neylsongularte/eloquent-extra-events:0.3.5`
-
+```
 For 5.5.x:
-
-`composer require neylsongularte/eloquent-extra-events`
-
+composer require neylsongularte/eloquent-extra-events
+```
 
 In your model:
 
@@ -56,4 +57,5 @@ Available properties:
   - `'updated'`: `array` e.g. `[23]`
   
   
+  -
   Note: sync trigger attach and detach.
