@@ -10,9 +10,11 @@
 Install:
 
 For 5.2.x, 5.3.x and 5.4.x:
+
 `composer require neylsongularte/eloquent-extra-events:0.3.5`
 
 For 5.5.x:
+
 `composer require neylsongularte/eloquent-extra-events`
 
 
@@ -52,3 +54,6 @@ Available properties:
   - `'attached'`: `array` e.g. `[1, 8]`
   - `'detached'`: `array` e.g. `[15, 16]`
   - `'updated'`: `array` e.g. `[23]`
+  
+  
+  Note: sync trigger attach and detach.
