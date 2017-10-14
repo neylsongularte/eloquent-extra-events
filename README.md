@@ -57,5 +57,5 @@ Available properties:
   - `'updated'`: `array` e.g. `[23]`
   
   
--
+
 Note: sync trigger attach and detach.
