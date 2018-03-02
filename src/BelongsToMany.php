@@ -15,7 +15,7 @@ class BelongsToMany extends BelongsToManyEloquent
     {
         $baseEventData = $this->getBaseEventData();
 
-        $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($ids)]);
+        $eventData = array_merge($baseEventData, ['related_ids_attributes' => $this->processIdsWithAttributes($ids)]);
         event('eloquent.syncing: ' . $baseEventData['parent_model'], $eventData);
 
         $changes = parent::sync($ids, $detaching);
@@ -30,7 +30,7 @@ class BelongsToMany extends BelongsToManyEloquent
     {
         $baseEventData = $this->getBaseEventData();
 
-        $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($id)]);
+        $eventData = array_merge($baseEventData, ['related_ids_attributes' => $this->processIdsWithAttributes($id, $attributes)]);
 
         event('eloquent.attaching: ' . $baseEventData['parent_model'], $eventData);
 
@@ -44,12 +44,12 @@ class BelongsToMany extends BelongsToManyEloquent
     {
         $baseEventData = $this->getBaseEventData();
 
-        $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($ids)]);
+        $eventData = array_merge($baseEventData, ['related_ids_attributes' => $this->processIdsWithAttributes($ids)]);
         event('eloquent.detaching: ' . $baseEventData['parent_model'], $eventData);
 
         $results = parent::detach($ids, $touch);
 
-        $eventData = array_merge($baseEventData, ['related_ids' => $this->processIds($ids), 'results' => $results]);
+        $eventData = array_merge($baseEventData, ['related_ids_attributes' => $this->processIdsWithAttributes($ids), 'results' => $results]);
         event('eloquent.detached: ' . $baseEventData['parent_model'], $eventData);
 
         return $results;
@@ -64,17 +64,27 @@ class BelongsToMany extends BelongsToManyEloquent
         );
     }
 
-    public function processIds($ids)
+    public function processIdsWithAttributes($ids, $attributes = [])
     {
-        if ($ids instanceof Collection) {
-            $ids = $ids->modelKeys();
-        }
-
+        $pivotAttributes = [];
         if ($ids instanceof Model) {
-            $ids = $ids->getKey();
+            $pivotAttributes[$ids->getKey()] = $attributes;
+        } elseif ($ids instanceof Collection) {
+            foreach ($ids as $model) {
+                $pivotAttributes[$model->getKey()] = $attributes;
+            }
+        } elseif (is_array($ids)) {
+            foreach ($ids as $key => $attributesArray) {
+                if (is_array($attributesArray)) {
+                    $pivotAttributes[$key] = array_merge($attributes, $attributesArray);
+                } else {
+                    $pivotAttributes[$attributesArray] = $attributes;
+                }
+            }
+        } elseif (is_int($ids) || is_string($ids)) {
+            $pivotAttributes[$ids] = $attributes;
         }
-
-        return (array) $ids;
+        return $pivotAttributes;
     }
 
 }
