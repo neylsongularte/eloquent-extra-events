@@ -30,4 +30,24 @@ trait ExtraEventsTrait {
 
         return new BelongsToMany($query, $parent, $table, $foreignKey, $otherKey, $relation);
     }
+
+    public function morphToMany($related, $name, $table = null, $foreignKey = null, $relatedKey = null, $inverse = false)
+    {
+        $morphToMany = parent::morphToMany($related, $name, $table, $foreignKey, $relatedKey, $inverse);
+
+        $query = $morphToMany->getQuery()->getModel()->newQuery();
+        $name = substr($morphToMany->getMorphType(), 0, -5);
+        $table = $morphToMany->getTable();
+        $caller = $morphToMany->getRelationName();
+
+        if(str_contains(app()->VERSION(), ['5.2.', '5.3.'])) {
+            $foreignKey = explode('.', $morphToMany->getForeignKey())[1];
+            $relatedKey = explode('.', $morphToMany->getOtherKey())[1];
+        } else {
+            $foreignKey = explode('.', $morphToMany->getQualifiedForeignKeyName())[1];
+            $relatedKey = explode('.', $morphToMany->getQualifiedRelatedKeyName())[1];
+        }
+
+        return new MorphToMany($query, $this, $name, $table, $foreignKey, $relatedKey, $caller, $inverse);
+    }
 }
